@@ -5,7 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { WeatherCardsComponent } from './weather-cards/weather-cards.component';
+import { WeatherApiService } from './weather-api/weather-api.service';
 
 @NgModule({
   declarations: [
@@ -17,8 +23,15 @@ import { WeatherCardsComponent } from './weather-cards/weather-cards.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatCardModule,
+    MatButtonModule,
+    HttpClientModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
   ],
-  providers: [],
+  providers: [
+    WeatherApiService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

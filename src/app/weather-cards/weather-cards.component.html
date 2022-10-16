@@ -1,3 +1,25 @@
 <div class="container">
+  <div class="add-container">
+    <mat-form-field>
+      <input matInput
+        [(ngModel)]="longitude"
+        type="number"
+        placeholder="Longitude">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput
+        [(ngModel)]="latitude"
+        type="number"
+        placeholder="Latitude">
+    </mat-form-field>
+    <button mat-button
+      (click)="requestOpenStreet()">
+      Add location
+    </button>
+  </div>
   <mat-card>Simple card</mat-card>
+  <!-- <button mat-button
+    (click)="requestOpenStreet()">
+    click
+  </button> -->
 </div>

@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { isNil } from 'lodash';
+import { WeatherApiService } from '../weather-api/weather-api.service';
 
 @Component({
   selector: 'app-weather-cards',
@@ -7,9 +10,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeatherCardsComponent implements OnInit {
 
-  constructor() { }
+  longitude: number | null = null;
+  latitude: number | null = null;
+  constructor(
+    private http: HttpClient,
+    private weatherApiService: WeatherApiService,
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
+
+  requestOpenStreet() {
+    const url = `https://www.openstreetmap.org/geocoder/search_geonames?query=sofia`;
+    const url2 = `https://api.open-meteo.com/v1/forecast?latitude=42.66&longitude=23.32`
+    this.http.get<any>(url2, {
+    })
+    .subscribe(val => console.log(val))
+  }
+
+  addLocation() {
+    if (isNil(this.longitude) || isNil(this.latitude)) {
+      return;
+    }
+
+    this.weatherApiService.addLocation(this.longitude, this.latitude)
+      .subscribe(console.log)
+  }  
 
 }
