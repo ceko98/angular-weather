@@ -26,7 +26,7 @@ export class WeatherStorageService implements OnDestroy {
   ] as const;
   private readonly dailyParams = ['sunrise','sunset'] as const;
 
-  private weatherLocations: WeatherResult[] = [];
+  weatherLocations: any[] = [];
 
   constructor(private http: HttpClient) {
     const locations = window.localStorage.getItem(this.LOCATIONS_KEY);
@@ -41,7 +41,7 @@ export class WeatherStorageService implements OnDestroy {
   }
   
   addLocation(location: WeatherLocation) {
-    return this.fetchLocation(location);
+    this.fetchLocation(location).subscribe(loc => this.weatherLocations.push(loc));
   }
 
   private fetchLocation({ longitude, latitude }: WeatherLocation) {

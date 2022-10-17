@@ -11,16 +11,19 @@ export class WeatherCardsComponent {
   longitude: number | null = null;
   latitude: number | null = null;
 
-  constructor(private WeatherStorageService: WeatherStorageService) { }
+  constructor(private weatherStorageService: WeatherStorageService) { }
+
+  get locations() {
+    return this.weatherStorageService.weatherLocations;
+  }
 
   addLocation() {
     if (isNil(this.longitude) || isNil(this.latitude)) {
       return;
     }
     
-    this.WeatherStorageService
+    this.weatherStorageService
       .addLocation({longitude: this.longitude, latitude: this.latitude})
-      .subscribe(console.log)
   }  
 
 }
