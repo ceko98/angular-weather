@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { WeatherCardsComponent } from './weather-cards/weather-cards.component';
 import { WeatherStorageService } from './weather-storage/weather-storage.service';
+import { WeatherApiService } from './weather-api/weather-api.service';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { WeatherStorageService } from './weather-storage/weather-storage.service
   ],
   providers: [
     WeatherStorageService,
+    WeatherApiService,
   ],
   bootstrap: [AppComponent]
 })
