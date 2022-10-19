@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { isNil } from 'lodash';
 
-interface WeatherLocation {
+export interface WeatherLocation {
+  name: string;
   latitude: number;
   longitude: number;
 }
@@ -15,21 +16,15 @@ export class WeatherStorageService {
 
   constructor() {
     const locations = window.localStorage.getItem(this.LOCATIONS_KEY);
-    console.log(locations);
-    
     this.locations = isNil(locations) ? [] : JSON.parse(locations);
   }
   
-  saveLocations() {
-    const serializedLocations = JSON.stringify(this.locations);
+  saveLocations(locations: WeatherLocation[]) {
+    const serializedLocations = JSON.stringify(locations);
     window.localStorage.setItem(this.LOCATIONS_KEY, serializedLocations);
   }
 
   get savedLocations(): WeatherLocation[] {
     return [...this.locations];
-  }
-
-  addLocation(location: WeatherLocation) {
-    this.locations.push(location);
   }
 }

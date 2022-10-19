@@ -1,16 +1,37 @@
 <div class="container">
-  <div class="add-container">
+  <div class="add-container" [formGroup]="locationForm">
     <mat-form-field>
       <input matInput
-        [(ngModel)]="longitude"
+        formControlName="latitude"
+        type="number"
+        placeholder="Latitude">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput
+        formControlName="longitude"
         type="number"
         placeholder="Longitude">
     </mat-form-field>
     <mat-form-field>
       <input matInput
-        [(ngModel)]="latitude"
-        type="number"
-        placeholder="Latitude">
+        formControlName="name"
+        placeholder="Location Name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Location Search" (selectionChange)="onSearchSelect($event.value)">
+        <mat-option>
+          <ngx-mat-select-search
+            [formControl]="locationSearchForm"
+            placeholderLabel="Search location...">
+          </ngx-mat-select-search>
+        </mat-option>
+        <mat-option *ngFor="let location of locationsSearched$ | async"
+          [value]="location">
+          <div class="option-content">{{location.name}}</div>
+          <div class="option-content">{{location.latitude.toFixed(4)}}, {{location.longitude.toFixed(4)}}</div>
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <button mat-button
       (click)="addLocation()">
@@ -21,7 +42,7 @@
     <mat-card *ngFor="let location of weatherLocations"
       class="weather-card">
       <mat-card-header>
-        <mat-card-title>Name: //TODO</mat-card-title>
+        <mat-card-title>{{location.name}}</mat-card-title>
         <mat-card-subtitle>
           Latitude: {{location.latitude}}, Longitude: {{location.longitude}}
         </mat-card-subtitle>
@@ -32,7 +53,8 @@
         <span>Wind Direction: {{location.current_weather.windspeed}} degrees</span>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button>Remove</button>
+        <button mat-button (click)="removeLocation(location)">Remove</button>
+        <button mat-button (click)="removeLocation(location)">Details/Edit</button>
       </mat-card-actions>
     </mat-card>
   </div>

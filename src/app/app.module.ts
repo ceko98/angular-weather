@@ -1,23 +1,26 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardModule } from '@angular/material/card';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { WeatherApiService } from './weather-api/weather-api.service';
 import { WeatherCardsComponent } from './weather-cards/weather-cards.component';
 import { WeatherStorageService } from './weather-storage/weather-storage.service';
-import { WeatherApiService } from './weather-api/weather-api.service';
+import { WeatherDetailsDialogComponent } from './weather-details-dialog/weather-details-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WeatherCardsComponent
+    WeatherCardsComponent,
+    WeatherDetailsDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +32,9 @@ import { WeatherApiService } from './weather-api/weather-api.service';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    NgxMatSelectSearchModule,
   ],
   providers: [
     WeatherStorageService,
