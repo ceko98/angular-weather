@@ -1,10 +1,8 @@
 <h2 mat-dialog-title>{{location.name}}</h2>
 <div class="container">
-  <div class="header">
-    <div class="coordinates">
-      <span>{{location.longitude}}</span>
-      <span>{{location.latitude}}</span>
-    </div>
+  <div class="coordinates">
+    <span>Latitude: {{location.latitude}}</span>
+    <span>Longitude: {{location.longitude}}</span>
   </div>
   <div mat-dialog-content class="content">
     <mat-tab-group mat-align-tabs="start">
