@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { WeatherResults } from '../weather-api/weather-api.service';
 
@@ -7,16 +7,11 @@ import { WeatherResults } from '../weather-api/weather-api.service';
   templateUrl: './weather-details-dialog.component.html',
   styleUrls: ['./weather-details-dialog.component.sass']
 })
-export class WeatherDetailsDialogComponent implements OnInit {
+export class WeatherDetailsDialogComponent {
   readonly displayedColumnsHourly = [
     'time', 'temperature', 'humidity', 'windspeed', 'winddirection',
   ];
   readonly displayedColumnsDaily = ['time', 'sunrise', 'sunset'];
 
   constructor(@Inject(MAT_DIALOG_DATA) public location: WeatherResults) { }
-
-  ngOnInit(): void {
-  }
-
-
 }

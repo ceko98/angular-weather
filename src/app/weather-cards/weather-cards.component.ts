@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { combineLatest, debounceTime, filter, map, Observable, of, repeat, Subject, switchMap, take, takeUntil } from 'rxjs';
 import { WeatherApiService, WeatherResults } from '../weather-api/weather-api.service';
 import { WeatherDetailsDialogComponent } from '../weather-details-dialog/weather-details-dialog.component';
+import { WeatherEditDialogComponent } from '../weather-edit-dialog/weather-edit-dialog.component';
 import { WeatherLocation, WeatherStorageService } from '../weather-storage/weather-storage.service';
 
 @Component({
@@ -89,10 +90,25 @@ export class WeatherCardsComponent implements OnDestroy {
   }
 
   openDetailsDialog(location: WeatherResults) {
-    this.dialog.open(
-      WeatherDetailsDialogComponent,
-      { data: location },
-    )
+    this.dialog.open(WeatherDetailsDialogComponent, { data: location });
+  }
+
+  openEditDialog(location: WeatherResults, index: number) {
+    this.dialog.open(WeatherEditDialogComponent, { data: location })
+      .afterClosed()
+      .pipe(
+        take(1),
+        filter(result => !!result),
+        switchMap(({ name, latitude, longitude }) => {
+          if (latitude !== location.latitude || longitude !== location.longitude) {
+            return this.weatherApiService.fetchLocation({ name, latitude, longitude });
+          } else {
+            return of({ ...location, name });
+          }
+        })
+      ).subscribe(newLocation => {
+        this.weatherLocations[index] = newLocation;
+      });
   }
 
   private areLocationsEqual(l1: WeatherLocation, l2: WeatherLocation) {

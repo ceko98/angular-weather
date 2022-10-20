@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Edit location</h1>
+<form cmat-dialog-content [formGroup]="locationForm">
+  <mat-form-field>
+    <input matInput
+      formControlName="latitude"
+      type="number"
+      placeholder="Latitude">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput
+      formControlName="longitude"
+      type="number"
+      placeholder="Longitude">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput
+      formControlName="name"
+      placeholder="Location Name">
+  </mat-form-field>
+</form>
+<div mat-dialog-actions>
+  <button mat-button
+    [mat-dialog-close]="locationForm.value"
+    [disabled]="locationForm.invalid">
+    Edit
+  </button>
+</div>

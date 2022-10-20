@@ -39,7 +39,7 @@
     </button>
   </div>
   <div class="cards-container">
-    <mat-card *ngFor="let location of weatherLocations"
+    <mat-card *ngFor="let location of weatherLocations; let i = index"
       class="weather-card">
       <mat-card-header>
         <mat-card-title>{{location.name}}</mat-card-title>
@@ -54,7 +54,8 @@
       </mat-card-content>
       <mat-card-actions>
         <button mat-button (click)="removeLocation(location)">Remove</button>
-        <button mat-button (click)="openDetailsDialog(location)">Details/Edit</button>
+        <button mat-button (click)="openDetailsDialog(location)">Details</button>
+        <button mat-button (click)="openEditDialog(location, i)">Edit</button>
       </mat-card-actions>
     </mat-card>
   </div>

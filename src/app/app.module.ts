@@ -18,12 +18,14 @@ import { WeatherApiService } from './weather-api/weather-api.service';
 import { WeatherCardsComponent } from './weather-cards/weather-cards.component';
 import { WeatherDetailsDialogComponent } from './weather-details-dialog/weather-details-dialog.component';
 import { WeatherStorageService } from './weather-storage/weather-storage.service';
+import { WeatherEditDialogComponent } from './weather-edit-dialog/weather-edit-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WeatherCardsComponent,
-    WeatherDetailsDialogComponent
+    WeatherDetailsDialogComponent,
+    WeatherEditDialogComponent
   ],
   imports: [
     BrowserModule,
