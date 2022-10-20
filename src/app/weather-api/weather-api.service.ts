@@ -11,6 +11,18 @@ interface WeatherApiRes {
     windspeed: number;
     winddirection: number;
   };
+  hourly: {
+    time: string[];
+    temperature_2m: number[];
+    relativehumidity_2m: number[];
+    windspeed_10m: number[];
+    winddirection_10m: number[];
+  };
+  daily: {
+    time: string[];
+    sunrise: string[];
+    sunset: string[];
+  }
 }
 
 export interface WeatherResults extends WeatherApiRes {

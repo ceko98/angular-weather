@@ -1,7 +1,9 @@
 import { Component, HostListener, OnDestroy } from '@angular/core';
 import { FormControl, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { combineLatest, debounceTime, filter, map, Observable, of, repeat, Subject, switchMap, take, takeUntil } from 'rxjs';
 import { WeatherApiService, WeatherResults } from '../weather-api/weather-api.service';
+import { WeatherDetailsDialogComponent } from '../weather-details-dialog/weather-details-dialog.component';
 import { WeatherLocation, WeatherStorageService } from '../weather-storage/weather-storage.service';
 
 @Component({
@@ -28,6 +30,7 @@ export class WeatherCardsComponent implements OnDestroy {
   constructor(
     private weatherStorageService: WeatherStorageService,
     private weatherApiService: WeatherApiService,
+    private dialog: MatDialog,
   ) {
     combineLatest(
       this.weatherStorageService.savedLocations.map(location =>
@@ -86,7 +89,10 @@ export class WeatherCardsComponent implements OnDestroy {
   }
 
   openDetailsDialog(location: WeatherResults) {
-    
+    this.dialog.open(
+      WeatherDetailsDialogComponent,
+      { data: location },
+    )
   }
 
   private areLocationsEqual(l1: WeatherLocation, l2: WeatherLocation) {

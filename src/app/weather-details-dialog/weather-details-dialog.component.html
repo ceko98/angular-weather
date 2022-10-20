@@ -1,1 +1,60 @@
-<p>weather-details-dialog works!</p>
+<h2 mat-dialog-title>{{location.name}}</h2>
+<div class="container">
+  <div class="header">
+    <div class="coordinates">
+      <span>{{location.longitude}}</span>
+      <span>{{location.latitude}}</span>
+    </div>
+  </div>
+  <div mat-dialog-content class="content">
+    <mat-tab-group mat-align-tabs="start">
+      <mat-tab label="Hourly params">
+        <table mat-table [dataSource]="location.hourly.time" class="hour-props">
+          <ng-container matColumnDef="time" sticky="true">
+            <th mat-header-cell *matHeaderCellDef>Time</th>
+            <td mat-cell *matCellDef="let elem; let i = index">{{location.hourly.time[i]}}</td>
+          </ng-container>
+          <ng-container matColumnDef="temperature" sticky="true">
+            <th mat-header-cell *matHeaderCellDef>Temperature</th>
+            <td mat-cell *matCellDef="let elem; let i = index">{{location.hourly.temperature_2m[i]}}</td>
+          </ng-container>
+          <ng-container matColumnDef="humidity" sticky="true">
+            <th mat-header-cell *matHeaderCellDef>Humidity</th>
+            <td mat-cell *matCellDef="let elem; let i = index">{{location.hourly.relativehumidity_2m[i]}}</td>
+          </ng-container>
+          <ng-container matColumnDef="windspeed" sticky="true">
+            <th mat-header-cell *matHeaderCellDef>Wind Speed</th>
+            <td mat-cell *matCellDef="let elem; let i = index">{{location.hourly.windspeed_10m[i]}}</td>
+          </ng-container>
+          <ng-container matColumnDef="winddirection" sticky="true">
+            <th mat-header-cell *matHeaderCellDef>Wind Direction</th>
+            <td mat-cell *matCellDef="let elem; let i = index">{{location.hourly.winddirection_10m[i]}}</td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsHourly; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsHourly;"></tr>
+        </table>
+      </mat-tab>
+  
+      <mat-tab label="Daily params">
+        <table mat-table [dataSource]="location.daily.time" class="day-props">
+          <ng-container matColumnDef="time" sticky="true">
+            <th mat-header-cell *matHeaderCellDef>Time</th>
+            <td mat-cell *matCellDef="let elem; let i = index">{{location.daily.time[i]}}</td>
+          </ng-container>
+          <ng-container matColumnDef="sunrise" sticky="true">
+            <th mat-header-cell *matHeaderCellDef>Sunrise</th>
+            <td mat-cell *matCellDef="let elem; let i = index">{{location.daily.sunrise[i]}}</td>
+          </ng-container>
+          <ng-container matColumnDef="sunset" sticky="true">
+            <th mat-header-cell *matHeaderCellDef>Sunset</th>
+            <td mat-cell *matCellDef="let elem; let i = index">{{location.daily.sunset[i]}}</td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsDaily; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsDaily;"></tr>
+        </table>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
