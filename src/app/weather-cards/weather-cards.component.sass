@@ -1,3 +1,5 @@
+$card-background: rgba(185, 171, 178, 0.35)
+
 .container
     .cards-container
         display: flex
@@ -9,7 +11,24 @@
 
         .weather-card
             width: 25%
+            background-color: $card-background
 
             .mat-card-content
                 display: flex
                 flex-direction: column
+                margin: 0 16px
+
+    .add-container
+        padding: 50px 50px
+
+        .add-label
+            margin: 0
+
+        .manual-fields
+            display: flex
+            align-items: ceonter
+            column-gap: 20px
+
+            .add-button
+                height: 36px
+        

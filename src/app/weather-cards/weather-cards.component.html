@@ -1,23 +1,6 @@
 <div class="container">
   <div class="add-container" [formGroup]="locationForm">
-    <mat-form-field>
-      <input matInput
-        formControlName="latitude"
-        type="number"
-        placeholder="Latitude">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput
-        formControlName="longitude"
-        type="number"
-        placeholder="Longitude">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput
-        formControlName="name"
-        placeholder="Location Name">
-    </mat-form-field>
-
+    <h2 class="add-label">Search for location:</h2>
     <mat-form-field>
       <mat-select placeholder="Location Search" (selectionChange)="onSearchSelect($event.value)">
         <mat-option>
@@ -33,10 +16,33 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-button
-      (click)="addLocation()">
-      Add location
-    </button>
+
+    <h2 class="add-label">Insert location manually:</h2>
+    <div class="manual-fields">
+      <mat-form-field>
+        <input matInput
+          formControlName="latitude"
+          type="number"
+          placeholder="Latitude">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput
+          formControlName="longitude"
+          type="number"
+          placeholder="Longitude">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput
+          formControlName="name"
+          placeholder="Location Name">
+      </mat-form-field>
+      <button mat-raised-button
+        class="add-button"
+        color="primary"
+        (click)="addLocation()">
+        Add location
+      </button>
+    </div>
   </div>
   <div class="cards-container">
     <mat-card *ngFor="let location of weatherLocations; let i = index"
